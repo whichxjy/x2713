@@ -14,12 +14,24 @@ void bootmain() {
      */
 
     // Video memory
-    char* VIDMEM = (char*)0xB8000;
+    volatile char* VIDMEM = (volatile char*)0xB8000;
 
-    VIDMEM[0] = '4';
-    VIDMEM[1] = 0x09;
-    VIDMEM[2] = '2';
-    VIDMEM[3] = 0x09;
+    *(VIDMEM) = '4';
+    ++VIDMEM;
+    *(VIDMEM) = 0x09;
+    ++VIDMEM;
+    *(VIDMEM) = '2';
+    ++VIDMEM;
+    *(VIDMEM) = 0x09;
+    ++VIDMEM;
+
+    int i;
+    for (i = 0; i < 2048; i++) {
+        *(VIDMEM) = ' ';
+        ++VIDMEM;
+        *(VIDMEM) = 0x09;
+        ++VIDMEM;
+    }
 
     // Moving the cursor
 
