@@ -22,7 +22,8 @@ int main(int argc, char* argv[]) {
     fwrite(buffer, 1, 512, stdout);
 
     memset(buffer, 0, 512);
-    for (int i = 0; i < 1023; i++) {
+    int i;
+    for (i = 0; i < 1023; i++) {
         fwrite(buffer, 1, 512, stdout);
     }
     
